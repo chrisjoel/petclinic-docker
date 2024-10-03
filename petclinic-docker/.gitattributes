@@ -1,0 +1,15 @@
+# Set the default behavior to automatically normalize line endings
+* text=auto
+
+# Explicitly set line endings for specific file types
+*.sh text eol=lf          # Bash scripts
+*.bat text eol=crlf       # Batch files for Windows
+*.txt text eol=lf         # Text files
+*.md text eol=lf          # Markdown files
+*.html text eol=lf        # HTML files
+*.css text eol=lf         # CSS files
+*.js text eol=lf          # JavaScript files
+*.json text eol=lf        # JSON files
+*.yml text eol=lf         # YAML files
+*.yaml text eol=lf        # YAML files
+*.csv text eol=lf         # CSV files

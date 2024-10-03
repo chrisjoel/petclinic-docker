@@ -1,0 +1,64 @@
+services:
+  petclinic:
+    build:
+      context: .
+      dockerfile: Dockerfile.multi
+    environment:
+      SERVER_PORT: 8080
+      MYSQL_URL: jdbc:mysql://mysqlserver/petclinic
+    volumes:
+      - /app
+    ports:
+      - "8000:8000"
+      - "8080:8080"
+
+  mysqlserver:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+      MYSQL_USER: petclinic
+      MYSQL_PASSWORD: petclinic
+      MYSQL_DATABASE: petclinic
+    volumes:
+      - mysql_config:/etc/mysql/conf.d
+
+  redis-0:
+    image: redis:4.0.2
+    command: ["redis-server", "/etc/redis/redis.conf"]
+    volumes:
+      - ./redis/conf/redis-0:/etc/redis/redis.conf
+
+  redis-1:
+    image: redis:4.0.2
+    command: ["redis-server", "/etc/redis/redis.conf"]
+    volumes:
+      - ./redis/conf/redis-1:/etc/redis/redis.conf
+
+  redis-2:
+    image: redis:4.0.2
+    command: ["redis-server", "/etc/redis/redis.conf"]
+    volumes:
+      - ./redis/conf/redis-2:/etc/redis/redis.conf
+
+  sentinel-01:
+    image: redis:4.0.2
+    command: ["redis-sentinel", "/etc/redis/sentinel.conf"]
+    volumes:
+      - ./redis/conf/sentinel-01:/etc/redis/sentinel.conf
+
+  sentinel-02:
+    image: redis:4.0.2
+    command: ["redis-sentinel", "/etc/redis/sentinel.conf"]
+    volumes:
+      - ./redis/conf/sentinel-02:/etc/redis/sentinel.conf
+
+  sentinel-03:
+    image: redis:4.0.2
+    command: ["redis-sentinel", "/etc/redis/sentinel.conf"]
+    volumes:
+      - ./redis/conf/sentinel-03:/etc/redis/sentinel.conf
+
+volumes:
+  mysql_config:
+  redis_data:
