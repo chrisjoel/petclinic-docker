@@ -11,7 +11,7 @@ CMD ["./mvnw", "spring-boot:run", "-Dspring-boot.run.profiles=mysql", "-Dspring-
 
 FROM base as build
 ##add -DskipTests If you want to speed up the build process and you’re not concerned about running tests at this stage
-RUN ./mvnw package 
+RUN ./mvnw package -DskipTests
 
 
 FROM eclipse-temurin:17-jre-jammy as production
