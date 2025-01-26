@@ -93,7 +93,7 @@ Use the following command to build and run the Docker containers:
 - docker-compose up -d
 - docker run -p 8080:8080 --name petclinic-app petclinic-docker-petclinic
 
-important: 
+# important: 
 
 ## add "-DskipTests" If you want to speed up the build process and you’re not concerned about running tests at this stage
 RUN ./mvnw package -DskipTests
